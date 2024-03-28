@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortedListTP1", "SortedListTP1\SortedListTP1.csproj", "{00769F6D-8F1B-4F8B-B1B2-F70ABB0FD97D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortedListTP1.Test", "..\SortedListTP1.Test\SortedListTP1.Test.csproj", "{FB67F387-FF6D-4567-96D3-AEC435559A93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{00769F6D-8F1B-4F8B-B1B2-F70ABB0FD97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00769F6D-8F1B-4F8B-B1B2-F70ABB0FD97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00769F6D-8F1B-4F8B-B1B2-F70ABB0FD97D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB67F387-FF6D-4567-96D3-AEC435559A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB67F387-FF6D-4567-96D3-AEC435559A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB67F387-FF6D-4567-96D3-AEC435559A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB67F387-FF6D-4567-96D3-AEC435559A93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

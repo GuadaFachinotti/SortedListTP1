@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SortedList.Test
 {
-    internal class TestA
+    public class TestA
     {
     }
 }

@@ -9,6 +9,10 @@
         public Concesionaria() 
         {
             Vehiculos = new SortedList<int, string>();
+
+
+
         }
+        public string Nombre { get; set; }
     }
 }

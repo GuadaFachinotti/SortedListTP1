@@ -10,7 +10,7 @@ namespace SortedList.Test
     public class TestC
     {
         [Fact]
-        public void TestSortedListCapacity()
+        public void ComprobarCapacidad()
         {
             // Crear una nueva SortedList con capacidad inicial de 3
             var sortedList = new SortedList<int, Mueble>(capacity: 3);
@@ -31,8 +31,408 @@ namespace SortedList.Test
             Assert.Equal(6, sortedList.Capacity);
         }
 
+        [Fact]
+        public void AgregarEnLista()
+        {
+            var lista = new SortedList<int, Mueble>();
 
+            Mueble mueble1 = new Mueble(1,"silla");
+            Mueble mueble2 = new Mueble(2, "mesa");
+
+            lista.Add(mueble1.Id, mueble1);
+            lista.Add(mueble2.Id, mueble2);
+
+            Mueble mueble3 = new Mueble(3,"placar");
+
+            lista.Add(3, mueble3);
+
+            Assert.Equal(3, lista.Count);
+            Assert.Equal("mesa", lista[2].Name);
+            Assert.Contains(mueble3, lista.Values);
+            Assert.Equal(mueble1,lista[1]);//comparer
+            Assert.Equal(mueble2, lista[2]);//
+
+        }
+        //****************************************
+
+        [Fact]
+        public void Count_ShouldReturnNumberOfItems()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+
+            // Act
+            sortedList.Add(1, new Mueble(1, "Chair"));
+            sortedList.Add(2, new Mueble(2, "Table"));
+
+            // Assert
+            Assert.Equal(2, sortedList.Count);
+        }
+
+
+        [Fact]
+        public void SortedList_Capacity_WorkCorrectly()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>(capacity: 5);
+
+            // Act & Assert
+            Assert.Equal(0, sortedList.Count);
+            Assert.Equal(5, sortedList.Capacity);
+        }
+
+        [Fact]
+        public void Comparer_ShouldReturnDefaultComparer()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+
+            // Act
+            var comparer = sortedList.Comparer;
+
+            // Assert
+            Assert.Equal(Comparer<int>.Default, comparer);
+        }
+        
+        [Fact]
+        public void Count()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+
+            // Act
+            var count = sortedList.Count;
+
+            // Assert
+            Assert.Equal(1, count);
+        }
+
+        [Fact]
+        public void Item_ShouldReturnItemByKey()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            var mueble = new Mueble(1, "Chair");
+            sortedList.Add(1, mueble);
+
+            // Act
+            var retrievedMueble = sortedList[1];
+
+            // Assert
+            Assert.Equal(mueble, retrievedMueble);
+        }
+
+        [Fact]
+        public void Keys_ShouldReturnKeysInSortedList()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+            sortedList.Add(2, new Mueble(2, "Table"));
+
+            // Act
+            var keys = sortedList.Keys;
+
+            // Assert
+            Assert.Equal(new List<int> { 1, 2 }, keys);
+        }
+
+        [Fact]
+        public void Values_ShouldReturnValuesInSortedList()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            var chair = new Mueble(1, "Chair");
+            var table = new Mueble(2, "Table");
+            sortedList.Add(1, chair);
+            sortedList.Add(2, table);
+
+            // Act
+            var values = sortedList.Values;
+
+            // Assert
+            Assert.Equal(new List<Mueble> { chair, table }, values);
+        }
+        /*
+        [Fact]
+        public void IsFixedSize_ShouldReturnFalse()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+
+            // Act
+            var isFixedSize = sortedList.IsFixedSize;
+
+            // Assert
+            Assert.False(isFixedSize);
+        }
+
+        [Fact]
+        public void IsReadOnly_ShouldReturnFalse()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+
+            // Act
+            var isReadOnly = sortedList.AsReadOnly;
+
+            // Assert
+            Assert.False(isReadOnly);
+        }
+
+        [Fact]
+        public void SyncRoot_ShouldNotBeNull()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+
+            // Act
+            var syncRoot = sortedList.SyncRoot;
+
+            // Assert
+            Assert.NotNull(syncRoot);
+        }
+        */
+
+        [Fact]
+        public void Eliminar()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            var chair = new Mueble(1, "Chair");
+            sortedList.Add(1, chair);
+
+            // Act
+            sortedList.Remove(1);
+
+            // Assert
+            Assert.Equal(0, sortedList.Count);
+        }
+
+        [Fact]
+        public void Clear_ShouldRemoveAllItems()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+            sortedList.Add(2, new Mueble(2, "Table"));
+
+            // Act
+            sortedList.Clear();
+
+            // Assert
+            Assert.Empty(sortedList);
+        }
+
+        [Fact]
+        public void ContainsKey_ShouldReturnTrueIfKeyExists()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+
+            // Act
+            var containsKey = sortedList.ContainsKey(1);
+
+            // Assert
+            Assert.True(containsKey);
+        }
+
+        [Fact]
+        public void ContainsKey_ShouldReturnFalseIfKeyDoesNotExist()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+
+            // Act
+            var containsKey = sortedList.ContainsKey(2);
+
+            // Assert
+            Assert.False(containsKey);
+        }
+
+        [Fact]
+        public void ContainsValue_ShouldReturnTrueIfValueExists()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            var chair = new Mueble(1, "Chair");
+            sortedList.Add(1, chair);
+
+            // Act
+            var containsValue = sortedList.ContainsValue(chair);
+
+            // Assert
+            Assert.True(containsValue);
+        }
+
+        [Fact]
+        public void ContainsValue_ShouldReturnFalseIfValueDoesNotExist()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            var chair = new Mueble(1, "Chair");
+            sortedList.Add(1, chair);
+
+            // Act
+            var containsValue = sortedList.ContainsValue(new Mueble(2, "Table"));
+
+            // Assert
+            Assert.False(containsValue);
+        }
+
+        [Fact]
+        public void GetEnumerator_ShouldReturnEnumerator()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+            sortedList.Add(2, new Mueble(2, "Table"));
+
+            // Act
+            var enumerator = sortedList.GetEnumerator();
+
+            // Assert
+            Assert.NotNull(enumerator);
+        }
+        /*
+        [Fact]
+        public void Clone()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+            sortedList.Add(2, new Mueble(2, "Table"));
+
+            // Act
+            var clone = sortedList.Clone();
+
+            // Assert
+            Assert.NotSame(sortedList, clone);
+            Assert.Equal(sortedList, clone);
+        }
+        */
+        [Fact]
+        public void Clone_ShouldReturnACloneOfSortedList()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+            sortedList.Add(2, new Mueble(2, "Table"));
+
+            // Act
+            var clone = new SortedList<int, Mueble>(sortedList);
+
+            // Assert
+            Assert.NotSame(sortedList, clone);
+            Assert.Equal(sortedList, clone);
+        }
+        /*
+        [Fact]
+        public void Equals_ShouldReturnTrueForEqualSortedList()
+        {
+            // Arrange
+            var sortedList1 = new SortedList<int, Mueble>();
+            sortedList1.Add(1, new Mueble(1, "Chair"));
+            sortedList1.Add(2, new Mueble(2, "Table"));
+
+            var sortedList2 = new SortedList<int, Mueble>();
+            sortedList2.Add(1, new Mueble(1, "Chair"));
+            sortedList2.Add(2, new Mueble(2, "Table"));
+
+            // Act
+            var areEqual = sortedList1.Equals(sortedList2);
+
+            // Assert
+            Assert.True(areEqual);
+        }
+        */
+        [Fact]
+        public void Equals_ShouldReturnTrueForEqualSortedList()
+        {
+            // Arrange
+            var sortedList1 = new SortedList<int, Mueble>();
+            sortedList1.Add(1, new Mueble(1, "Chair"));
+            sortedList1.Add(2, new Mueble(2, "Table"));
+
+            var sortedList2 = new SortedList<int, Mueble>();
+            sortedList2.Add(1, new Mueble(1, "Chair"));
+            sortedList2.Add(2, new Mueble(2, "Table"));
+
+            // Act
+            var areEqual = true;
+
+            if (sortedList1.Count != sortedList2.Count)
+            {
+                areEqual = false;
+            }
+            else
+            {
+                for (int i = 0; i < sortedList1.Count; i++)
+                {
+                    if (!sortedList1.Keys[i].Equals(sortedList2.Keys[i]) || !sortedList1.Values[i].Equals(sortedList2.Values[i]))
+                    {
+                        areEqual = false;
+                        break;
+                    }
+                }
+            }
+
+            // Assert
+            Assert.True(areEqual);
+        }
+
+        [Fact]
+        public void Contains_ShouldReturnTrueIfKeyValuePairExists()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+
+            // Act
+            var contains = sortedList.ContainsKey(1);
+
+            // Assert
+            Assert.True(contains);
+        }
+
+
+        [Fact]
+        public void Contains_ShouldReturnFalseIfKeyValuePairDoesNotExist()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+
+            // Act
+            var contains = sortedList.Contains(new KeyValuePair<int, Mueble>(2, new Mueble(2, "Table")));
+
+            // Assert
+            Assert.False(contains);
+        }
+
+        [Fact]
+        public void TrimExcess_ShouldAdjustTheCapacity()
+        {
+            // Arrange
+            var sortedList = new SortedList<int, Mueble>();
+            sortedList.Add(1, new Mueble(1, "Chair"));
+            sortedList.Add(2, new Mueble(2, "Table"));
+
+            // Act
+            sortedList.TrimExcess();
+
+            // Assert
+            Assert.Equal(2, sortedList.Capacity);
+        }
 
 
     }
 }
+
+
+
+
+

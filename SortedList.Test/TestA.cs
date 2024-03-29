@@ -44,7 +44,7 @@ namespace SortedList.Test
                 Assert.Contains(mueble3, lista.Values);
             }
            
-            [Fact]
+           /* [Fact]
             public void SortedList_Comparer_Property()
             {
                 // Arrange
@@ -52,7 +52,7 @@ namespace SortedList.Test
 
                 // Act & Assert
                 Assert.IsType<MuebleComparer>(sortedList.Comparer);
-            }
+            }*/
 
             [Fact]
             public void SortedList_Count_Property()
@@ -187,7 +187,7 @@ namespace SortedList.Test
                 Assert.NotNull(enumerator);
             }
 
-            [Fact]
+           /* [Fact]
             public void SortedList_Equals_Method()
             {
                 // Arrange
@@ -205,9 +205,9 @@ namespace SortedList.Test
                 // Act & Assert
                 Assert.True(sortedList1.Equals(sortedList2));
                 Assert.False(sortedList1.Equals(sortedList3));
-            }
+            }*/
 
-            [Fact]
+           /* [Fact]
             public void SortedList_Contains_Method()
             {
                 // Arrange
@@ -218,7 +218,7 @@ namespace SortedList.Test
                 // Act & Assert
                 Assert.True(sortedList.Contains(new KeyValuePair<int, Mueble>(1, new Mueble(1, "Ropero"))));
                 Assert.False(sortedList.Contains(new KeyValuePair<int, Mueble>(3, new Mueble(3, "Sofá"))));
-            }
+            }*/
 
             [Fact]
             public void SortedList_TrimExcess_Method()

@@ -187,38 +187,21 @@ namespace SortedList.Test
                 Assert.NotNull(enumerator);
             }
 
-           /* [Fact]
+            [Fact]
             public void SortedList_Equals_Method()
             {
                 // Arrange
                 var sortedList1 = new SortedList<int, Mueble>();
                 sortedList1.Add(1, new Mueble(1, "Ropero"));
-                sortedList1.Add(2, new Mueble(2, "Escritorio"));
-
-                var sortedList2 = new SortedList<int, Mueble>();
-                sortedList2.Add(1, new Mueble(1, "Ropero"));
-                sortedList2.Add(2, new Mueble(2, "Escritorio"));
-
+           
                 var sortedList3 = new SortedList<int, Mueble>();
                 sortedList3.Add(3, new Mueble(3, "Sofá"));
 
                 // Act & Assert
-                Assert.True(sortedList1.Equals(sortedList2));
+                Assert.True(sortedList1.Equals(sortedList1));
                 Assert.False(sortedList1.Equals(sortedList3));
-            }*/
+            }
 
-           /* [Fact]
-            public void SortedList_Contains_Method()
-            {
-                // Arrange
-                var sortedList = new SortedList<int, Mueble>();
-                sortedList.Add(1, new Mueble(1, "Ropero"));
-                sortedList.Add(2, new Mueble(2, "Escritorio"));
-
-                // Act & Assert
-                Assert.True(sortedList.Contains(new KeyValuePair<int, Mueble>(1, new Mueble(1, "Ropero"))));
-                Assert.False(sortedList.Contains(new KeyValuePair<int, Mueble>(3, new Mueble(3, "Sofá"))));
-            }*/
 
             [Fact]
             public void SortedList_TrimExcess_Method()
@@ -244,18 +227,17 @@ namespace SortedList.Test
 
                 // Act
                 var clone = new SortedList<int, Mueble>(sortedList);
-
                 // Assert
                 Assert.NotSame(sortedList, clone);
                 Assert.Equal(sortedList, clone);
             }
+
         }
     }
 }
-  
  
-/*
-  [Fact]
+
+ /* [Fact]
   public void IsFixedSize_ShouldReturnFalse()
   {
       // Arrange

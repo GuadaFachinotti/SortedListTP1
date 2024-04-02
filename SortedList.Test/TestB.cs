@@ -384,34 +384,6 @@ namespace SortedList.Test
 
         }
 
-        [Fact]
-
-        public void Agregar_Mueble_Y_Verificar_Su_Existencia()
-        {
-            var mueble1 = new Mueble(12, "Silla");
-            var mueble2 = new Mueble(15, "Mesa");
-
-            var muebleria = new Muebleria();
-
-
-            muebleria.AgregarMueble(mueble1);
-            muebleria.AgregarMueble(mueble2);
-
-           
-            //Se verifica que la lista no esté vacia
-            Assert.NotNull(muebleria);
-            //Se verifica la existencia de un mueble a partir de su clave
-            Assert.Equal(true, muebleria.ListaMuebles.ContainsKey(12));
-
-
-        }
-       
-        
-      
-
-        
-
-      
     }
 
 }

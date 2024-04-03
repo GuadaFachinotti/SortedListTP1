@@ -225,63 +225,63 @@ namespace SortedList.Test
             Assert.Empty(sortedList);
         }
 
-        [Fact]
-        public void ContainsKey_ShouldReturnTrueIfKeyExists()
-        {
-            // Arrange
-            var sortedList = new SortedList<int, Mueble>();
-            sortedList.Add(1, new Mueble(1, "Chair"));
+        //[Fact]
+        //public void ContainsKey_ShouldReturnTrueIfKeyExists()
+        //{
+        //    // Arrange
+        //    var sortedList = new SortedList<int, Mueble>();
+        //    sortedList.Add(1, new Mueble(1, "Chair"));
 
-            // Act
-            var containsKey = sortedList.ContainsKey(1);
+        //    // Act
+        //    var containsKey = sortedList.ContainsKey(1);
 
-            // Assert
-            Assert.True(containsKey);
-        }
+        //    // Assert
+        //    Assert.True(containsKey);
+        //}
 
-        [Fact]
-        public void ContainsKey_ShouldReturnFalseIfKeyDoesNotExist()
-        {
-            // Arrange
-            var sortedList = new SortedList<int, Mueble>();
-            sortedList.Add(1, new Mueble(1, "Chair"));
+        //[Fact]
+        //public void ContainsKey_ShouldReturnFalseIfKeyDoesNotExist()
+        //{
+        //    // Arrange
+        //    var sortedList = new SortedList<int, Mueble>();
+        //    sortedList.Add(1, new Mueble(1, "Chair"));
 
-            // Act
-            var containsKey = sortedList.ContainsKey(2);
+        //    // Act
+        //    var containsKey = sortedList.ContainsKey(2);
 
-            // Assert
-            Assert.False(containsKey);
-        }
+        //    // Assert
+        //    Assert.False(containsKey);
+        //}
 
-        [Fact]
-        public void ContainsValue_ShouldReturnTrueIfValueExists()
-        {
-            // Arrange
-            var sortedList = new SortedList<int, Mueble>();
-            var chair = new Mueble(1, "Chair");
-            sortedList.Add(1, chair);
+        //[Fact]
+        //public void ContainsValue_ShouldReturnTrueIfValueExists()
+        //{
+        //    // Arrange
+        //    var sortedList = new SortedList<int, Mueble>();
+        //    var chair = new Mueble(1, "Chair");
+        //    sortedList.Add(1, chair);
 
-            // Act
-            var containsValue = sortedList.ContainsValue(chair);
+        //    // Act
+        //    var containsValue = sortedList.ContainsValue(chair);
 
-            // Assert
-            Assert.True(containsValue);
-        }
+        //    // Assert
+        //    Assert.True(containsValue);
+        //}
 
-        [Fact]
-        public void ContainsValue_ShouldReturnFalseIfValueDoesNotExist()
-        {
-            // Arrange
-            var sortedList = new SortedList<int, Mueble>();
-            var chair = new Mueble(1, "Chair");
-            sortedList.Add(1, chair);
+        //[Fact]
+        //public void ContainsValue_ShouldReturnFalseIfValueDoesNotExist()
+        //{
+        //    // Arrange
+        //    var sortedList = new SortedList<int, Mueble>();
+        //    var chair = new Mueble(1, "Chair");
+        //    sortedList.Add(1, chair);
 
-            // Act
-            var containsValue = sortedList.ContainsValue(new Mueble(2, "Table"));
+        //    // Act
+        //    var containsValue = sortedList.ContainsValue(new Mueble(2, "Table"));
 
-            // Assert
-            Assert.False(containsValue);
-        }
+        //    // Assert
+        //    Assert.False(containsValue);
+        //}
 
         [Fact]
         public void GetEnumerator_ShouldReturnEnumerator()

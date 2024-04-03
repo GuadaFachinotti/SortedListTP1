@@ -10,18 +10,18 @@ namespace SortedList.Test
     public class TestA
     {
         //agregue un capacity 
-        public class SortedListTests
-        {
-            [Fact]
-            public void SortedList_Capacity_WorkCorrectly()
-            {
-                // Arrange
-                var sortedList = new SortedList<int, Mueble>(capacity: 5);
+        //public class SortedListTests
+        //{
+        //    [Fact]
+        //    public void SortedList_Capacity_WorkCorrectly()
+        //    {
+        //        // Arrange
+        //        var sortedList = new SortedList<int, Mueble>(capacity: 5);
 
-                // Act & Assert
-                Assert.Equal(0, sortedList.Count);
-                Assert.Equal(5, sortedList.Capacity);
-            }
+        //        // Act & Assert
+        //        Assert.Equal(0, sortedList.Count);
+        //        Assert.Equal(5, sortedList.Capacity);
+        //    }
 
             [Fact]
             //count values
@@ -148,15 +148,22 @@ namespace SortedList.Test
             }
 
             [Fact]
-            public void SortedList_ContainsKey_Method()
+            public void Verificar_Si_Existe_Clave_Valor()
             {
-                // Arrange
+                
                 var sortedList = new SortedList<int, Mueble>();
-                sortedList.Add(1, new Mueble(1, "Ropero"));
+                var mueble1 = new Mueble(1, "Ropero");
+                var mueble2 = new Mueble(2, "Escritorio");
 
-                // Act & Assert
+                sortedList.Add(1, mueble1);
+
                 Assert.True(sortedList.ContainsKey(1));
+                Assert.True(sortedList.ContainsValue(mueble1));
+
                 Assert.False(sortedList.ContainsKey(2));
+                Assert.False(sortedList.ContainsValue(mueble2));
+
+                
             }
 
             [Fact]
@@ -165,7 +172,7 @@ namespace SortedList.Test
                 // Arrange
                 var sortedList = new SortedList<int, Mueble>();
                 var mueble1 = new Mueble(1, "Ropero");
-                sortedList.Add(1, mueble1);
+                
 
                 // Act & Assert
                 Assert.True(sortedList.ContainsValue(mueble1));

@@ -1,5 +1,6 @@
 ﻿using SortedListTP1;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,13 @@ namespace SortedList.Test
 {
     public class TestB
     {
-        //Metodos
+        //--------------------------METODOS----------------------------
         //---------------------------Add-------------------------------
         //---------------------------Clear-----------------------------
         //---------------------------Count-----------------------------
         [Fact]
       
-        public void LimpiarLista()
+        public void Agregar_Elementos_Y_Limpiar_Lista()
         {
             var mueble1 = new Mueble(18, "Silla");
             var mueble2 = new Mueble(15, "Mesa");
@@ -62,7 +63,7 @@ namespace SortedList.Test
             listaMuebles.Add(mueble4.Id, mueble4);
 
 
-            //Se aplica método Remove 
+            //Se aplica método Remove (remueve un elemento segun la key)
             listaMuebles.Remove(mueble1.Id);
 
 
@@ -73,14 +74,12 @@ namespace SortedList.Test
             Assert.Equal(true, listaMuebles.ContainsValue(mueble2));
 
 
-            //Se aplica RemoveAt, eliminando por posicion (indice)
+            //Se aplica RemoveAt, eliminando por posición (indice)
             listaMuebles.RemoveAt(3);
 
-            //Se verifica si se eliminó la posicion 3, es decir se elimina Escritorio y 
+            //Se verifica si se eliminó la posición 3, es decir se elimina Escritorio y 
             //Se busca por la key
             Assert.Equal(false, listaMuebles.ContainsKey(4));
-
-            
 
 
         }
@@ -96,30 +95,24 @@ namespace SortedList.Test
 
             var listaMuebles = new SortedList<int, Mueble>();
 
-
             listaMuebles.Add(0, mueble0);
             listaMuebles.Add(10, mueble1);
             listaMuebles.Add(20, mueble2);
-
-            
+   
             var enumerador = listaMuebles.GetEnumerator();
             
-
             while(enumerador.MoveNext()) 
 
             {   //verificamos la existencia del contenido actual del enumerador en la SortedList "listaMuebles"
+                //enumerador.Current Devuelve el par Clave-Valor de la posicion actual del enumerador
+
                 Assert.True(listaMuebles.ContainsKey(enumerador.Current.Key));
-                //enumerador.Current Devuelve el par Clave valor de la posicion actual del enumerador
+
                 Assert.True(listaMuebles.ContainsValue(enumerador.Current.Value));
-
-
 
             }
 
-
         }
-
-
 
 
         //------------------------------GetKeyAtIndex--------------------------
@@ -139,14 +132,11 @@ namespace SortedList.Test
             listaMuebles.Add(18, mueble18);
 
 
-
-
             //GetKeyAtIndex(Int32), Obtiene la Key de acuerdo al indice especificado            
             Assert.Equal(18, listaMuebles.GetKeyAtIndex(2));
 
             //GetValueAtIndex(Int32) Obtiene el Value(el objeto mueble) de acuerdo al indice especificado
             Assert.Equal(mueble18, listaMuebles.GetValueAtIndex(2));
-
 
 
         }
@@ -155,7 +145,7 @@ namespace SortedList.Test
         //---------------------------------IndexOfValue--------------------------------
         [Fact]
         //Item,
-        //IndexOfKey(TKey): Obtiene el indice base cero (posicion) del objeto con la key especificada
+        //IndexOfKey(TKey): Obtiene el índice base cero (posicion) del objeto con la key especificada
         //IndexOfValue(TValue): Obtiene el indice base cero (posicion) de la primera aparicion del
         //                      objeto con el valor especificado
         public void Obtener_Indice_De_Un_Elemento_Por_Key_Value()
@@ -210,12 +200,15 @@ namespace SortedList.Test
 
             listaMuebles.Add(0, mueble0);
             listaMuebles.Add(10, mueble1);
+
             //obtengo el value del indice 1
             Assert.Equal(mueble1, listaMuebles.GetValueAtIndex(1));
 
             //actualizamos el value del indice 1
 
             listaMuebles.SetValueAtIndex(1, mueble18);
+
+            //Ahora mueble18 estará en el indice 1
 
             Assert.Equal(mueble18, listaMuebles.GetValueAtIndex(1));
 
@@ -252,26 +245,14 @@ namespace SortedList.Test
             listaMuebles.TryGetValue(16, out valorNoEncontrado);
             
                 Assert.Null(valorNoEncontrado);
-            
-
-
-
-
-            //GetKeyAtIndex(Int32), Obtiene la Key de acuerdo al indice especificado            
-            Assert.Equal(18, listaMuebles.GetKeyAtIndex(2));
-
-            //GetValueAtIndex(Int32) Obtiene el Value(el objeto mueble) de acuerdo al indice especificado
-            Assert.Equal(mueble18, listaMuebles.GetValueAtIndex(2));
-
-
 
         }
 
         //--------------------------------------------------------------------
-        //Propiedades
+        //--------------------------PROPIEDADES-------------------------------
 
         //--------------------------Capacity----------------------------------
-        //--------------------------TryGetValue-------------------------------
+        //--------------------------TrimExcess-------------------------------
         [Fact]
         public void Crear_SortedList_Con_Capacidad_3_Elementos()
         {
@@ -313,13 +294,12 @@ namespace SortedList.Test
             //al constructor
             var listaMuebles = new SortedList<int, Mueble>(new ComparadorDescendente());
 
-
             listaMuebles.Add(mueble1.Id, mueble1);
             listaMuebles.Add(mueble2.Id, mueble2);
             listaMuebles.Add(mueble3.Id, mueble3);
 
-
-            
+            //Al utilizar el Comparador Descendente el orden por defecto es Descedente
+            //La key de mayor valor estará en la primera posicion
             Assert.Equal(3, listaMuebles.GetKeyAtIndex(0));
 
             
@@ -349,8 +329,7 @@ namespace SortedList.Test
 
             //Assert.Equal(2, listaMuebles.Count());
         }
-        //item
-
+        
         //--------------------------Keys----------------------
         //--------------------------Values--------------------
         [Fact]
@@ -368,18 +347,128 @@ namespace SortedList.Test
             listaMuebles.Add(1, mueble1);
             listaMuebles.Add(2, mueble2);
 
-            var values = listaMuebles.Values;
-            var keys = listaMuebles.Keys;
+            var coleccionValues = listaMuebles.Values;
+            var coleccionKeys = listaMuebles.Keys;
 
 
+            //Comprobamos que la nueva coleccion "keys" tenga todas las clave de listaMueble
+            Assert.Equal(true, coleccionKeys.Contains(0));
+            Assert.Equal(true, coleccionKeys.Contains(1));
+            Assert.Equal(true, coleccionKeys.Contains(2));
+
+            Assert.Equal(true, coleccionValues.Contains(mueble0));
+            Assert.Equal(true, coleccionValues.Contains(mueble1));
+            Assert.Equal(true, coleccionValues.Contains(mueble2));
+
+            //Con foreach
+            foreach (var item in listaMuebles)
+            {
+                Assert.True(coleccionKeys.Contains(item.Key));
+            }
+
+            foreach (var item in listaMuebles)
+            {
+                Assert.True(coleccionValues.Contains(item.Value));
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        //---------------------------Ejemplos Heredados de Object---------------------------------
+
+        //---------------------Equals--------------------------
+        [Fact]
+
+        public void Verificar_Dos_Listas_Sean_Iguales()
+        {
+            var mueble0 = new Mueble("Silla");
+            var mueble1 = new Mueble("Mesa");
+            var mueble2 = new Mueble("Ropero");
+
+            var listaMuebles = new SortedList<int, Mueble>();
+
+            listaMuebles.Add(0, mueble0);
+            listaMuebles.Add(1, mueble1);
+            listaMuebles.Add(2, mueble2);
+            //------------------------------------------------------
+            var listaMuebles2 = listaMuebles;
+           
+
+            //verificamos que las listas sean iguales
+            Assert.True(listaMuebles2.Equals(listaMuebles)); 
+
+        }
+
+
+        //---------------------GetType-------------------------
+        [Fact]
+
+        public void Verificar_Tipo_De_Instancia_Actual()
+        {
+            var mueble0 = new Mueble("Silla");
+            var mueble1 = new Mueble("Mesa");
+            var mueble2 = new Mueble("Ropero");
+
+            var listaMuebles = new SortedList<int, Mueble>();
+
+            listaMuebles.Add(0, mueble0);
+            listaMuebles.Add(1, mueble1);
+            listaMuebles.Add(2, mueble2);
+
+
+            //Type es una clase en .net que representa los tipos de datos en tiempo de ejecucion
+            //Get type devuelve la instancia actual del objeto
+            //La instancia actual de listaMuebles es SortedList<int, Mueble>
+            Type tipo = listaMuebles.GetType();
             
-            Assert.Equal(true, keys.Contains(0));
-            Assert.Equal(true, keys.Contains(1));
-            Assert.Equal(true, keys.Contains(2));
+            //typeof se utiliza para obtener el objeto type asociado a un tipo de dato especifico 
+            Type tipoEsperado = typeof(SortedList<int, Mueble>);
 
-            Assert.Equal(true, values.Contains(mueble0));
-            Assert.Equal(true, values.Contains(mueble1));
-            Assert.Equal(true, values.Contains(mueble2));
+            Assert.Equal(tipoEsperado, tipo);   
+   
+
+        }
+
+        //---------------------ToString------------------------
+        [Fact]
+
+        public void Verificar_Lista_Cadena()
+        {
+            var mueble0 = new Mueble("Silla");
+            var mueble1 = new Mueble("Mesa");
+            var mueble2 = new Mueble("Ropero");
+
+            var listaMuebles = new SortedList<int, Mueble>();
+
+            listaMuebles.Add(0, mueble0);
+            listaMuebles.Add(1, mueble1);
+            listaMuebles.Add(2, mueble2);
+
+            var listaDeCadena = listaMuebles.ToString();
+            //------------------------------------------------------
+            
+
+            //Devuelve una cadena que representa el objeto actual
+     
+            Assert.True(listaDeCadena.Contains("System.Collections.Generic.SortedList`2[System.Int32,SortedListTP1.Mueble]"));
+
+            listaDeCadena= listaMuebles[1].ToString();
+
+            Assert.True(listaDeCadena.Contains("Mueble"));
+
+
+            listaDeCadena = listaMuebles[1].Name.ToString();
+
+
+            Assert.True(listaDeCadena.Contains("Mesa"));
 
 
         }

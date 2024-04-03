@@ -34,7 +34,7 @@ namespace SortedList.Test
             listaMuebles.Clear();
             //Se verifica si la lista está vacía
             Assert.Empty(listaMuebles);
-            //Se verifica si la lita está vacía a partir de la función Count
+            //Se verifica si la lista está vacía a partir de la función Count
             Assert.Equal(0, listaMuebles.Count);
 
 
@@ -200,6 +200,7 @@ namespace SortedList.Test
 
             listaMuebles.Add(0, mueble0);
             listaMuebles.Add(10, mueble1);
+            listaMuebles.Add(18, mueble18);
 
             //obtengo el value del indice 1
             Assert.Equal(mueble1, listaMuebles.GetValueAtIndex(1));
@@ -382,7 +383,7 @@ namespace SortedList.Test
 
 
 
-        //---------------------------Ejemplos Heredados de Object---------------------------------
+        //-----------------------------Ejemplos Heredados de Object---------------------------------
 
         //---------------------Equals--------------------------
         [Fact]
@@ -398,7 +399,8 @@ namespace SortedList.Test
             listaMuebles.Add(0, mueble0);
             listaMuebles.Add(1, mueble1);
             listaMuebles.Add(2, mueble2);
-            //------------------------------------------------------
+          
+
             var listaMuebles2 = listaMuebles;
            
 
@@ -462,7 +464,7 @@ namespace SortedList.Test
 
             listaDeCadena= listaMuebles[1].ToString();
 
-            Assert.True(listaDeCadena.Contains("Mueble"));
+            Assert.True(listaDeCadena.Contains("Mueble0"));
 
 
             listaDeCadena = listaMuebles[1].Name.ToString();
